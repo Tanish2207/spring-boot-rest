@@ -4,6 +4,7 @@ import com.restapi.RestAPILesson.dto.AddStudentDTO;
 import com.restapi.RestAPILesson.dto.StudentDTO;
 import com.restapi.RestAPILesson.service.StudentService;
 import com.restapi.RestAPILesson.service.impl.StudentServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,8 +51,9 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<StudentDTO> createNewStudent(@RequestBody AddStudentDTO asdto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.createNewStudent(asdto));
+    public ResponseEntity<StudentDTO> createNewStudent(@RequestBody @Valid AddStudentDTO addStudentDTO){
+//        System.out.println("POST REQUEST VALIDATED!!!!!!");
+        return ResponseEntity.status(HttpStatus.CREATED).body(studentService.createNewStudent(addStudentDTO));
     }
 
     @DeleteMapping("/students/{sid}")

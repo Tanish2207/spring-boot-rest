@@ -5,6 +5,7 @@ import com.restapi.RestAPILesson.dto.StudentDTO;
 import com.restapi.RestAPILesson.entity.Student;
 import com.restapi.RestAPILesson.repository.StudentRepository;
 import com.restapi.RestAPILesson.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -45,8 +46,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentDTO createNewStudent(AddStudentDTO asdto) {
-        Student newStudent = modelMapper.map(asdto, Student.class);
+    public StudentDTO createNewStudent(AddStudentDTO addStudentDTO) {
+        Student newStudent = modelMapper.map(addStudentDTO, Student.class);
         Student student = studentRepository.save(newStudent);
         return modelMapper.map(student, StudentDTO.class);
     }
@@ -81,19 +82,20 @@ public class StudentServiceImpl implements StudentService {
                     student.setCity((String) value);
                     break;
                 case "email":
-                    if (((String) value).contains("@")) {
+//                    if (((String) value).contains("@")) {
                         student.setEmail((String) value);
-                    } else {
-                        throw new IllegalArgumentException("Email format invalid!!");
-                    }
+//                    } else {
+//                        throw new IllegalArgumentException("Email format invalid!!");
+//                    }
                     break;
                 case "marks":
-                    long marks = ((Number) value).longValue();
-                    if (marks <= 200) {
-                        student.setMarks(marks);
-                    } else {
-                        throw new IllegalArgumentException("Marks invalid!!");
-                    }
+//                    long marks = c;
+//                    if (marks <= 200) {
+                        student.setMarks(((Number) value).longValue());
+//                    } else {
+//                        throw new IllegalArgumentException("Marks invalid!!");
+//                    }
+//                    No need of this validation now, I have added the Jakarata Validation Contraints in DTO
                     break;
             }
         });

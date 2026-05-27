@@ -1,6 +1,9 @@
 package com.restapi.RestAPILesson.dto;
 
 
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +16,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class StudentDTO {
     private UUID id;
-    @Nullable
     private String name;
     private String city;
     private String email;

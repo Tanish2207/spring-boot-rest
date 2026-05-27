@@ -12,7 +12,7 @@ public interface StudentService {
 
     StudentDTO getStudentById(UUID id);
 
-    StudentDTO createNewStudent(AddStudentDTO asdto);
+    StudentDTO createNewStudent(AddStudentDTO addStudentDTO);
 
     void deleteStudentById(UUID sid);
 
